@@ -1,6 +1,3 @@
-test feature
+# rebase
 
-from main commit
-test 2
-
-another one from main
+my test2 commit
