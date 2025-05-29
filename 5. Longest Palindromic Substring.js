@@ -3,3 +3,6 @@
  * @return {string}
  */
 var longestPalindrome = function (s) {};
+
+const s = "babad";
+console.log(longestPalindrome(s));
