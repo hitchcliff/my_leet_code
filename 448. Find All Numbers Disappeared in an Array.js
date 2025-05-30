@@ -3,7 +3,7 @@
  * @return {number[]}
  */
 var findDisappearedNumbers = function (nums) {
-  const set = new Set([...nums]);
+  const set = new Set(nums);
 
   const missingNumber = [];
   for (let i = 1; i < nums.length + 1; i++) {
