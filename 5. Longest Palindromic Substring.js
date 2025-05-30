@@ -10,10 +10,12 @@ var longestPalindrome = function (s) {
   for (let i = 0; i < s.length; i++) {
     const even = getDrome(i - 1, i, s);
     const odd = getDrome(i - 1, i + 1, s);
-    const curMax = even[1] - even[0] > odd[1] - odd[0] ? even : odd;
+    console.log(i);
+    // const curMax = even[1] - even[0] > odd[1] - odd[0] ? even : odd;
 
-    max = curMax[1] - curMax[0] > max[1] - max[0] ? curMax : max;
-    console.log(even, odd, max);
+    // max = curMax[1] - curMax[0] > max[1] - max[0] ? curMax : max;
+    // console.log(even, odd, max);
+    // console.log(even);
   }
 
   function getDrome(left, right, s) {
@@ -22,8 +24,13 @@ var longestPalindrome = function (s) {
 
       left--;
       right++;
+
+      console.log("L--: ", left);
+      console.log("R++: ", right);
     }
 
+    console.log("LEFT: ", left, s[left]);
+    console.log("RIGHT: ", right, s[right]);
     return [left + 1, right];
   }
 
