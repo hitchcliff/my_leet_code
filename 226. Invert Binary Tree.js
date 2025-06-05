@@ -34,9 +34,15 @@ function ArrayToTreeNode(arr) {
  * @return {TreeNode}
  */
 var invertTree = function (root) {
-  if (!root) return [];
+  if (!root) return null;
 
-  [root.right, root.left] = [invertTree(root.left), invertTree(root.right)];
+  const temp = root.left;
+  root.left = root.right;
+  root.right = temp;
+
+  invertTree(root.left);
+  invertTree(root.right);
+
   return root;
 };
 
