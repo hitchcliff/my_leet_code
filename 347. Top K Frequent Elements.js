@@ -4,25 +4,40 @@
  * @return {number[]}
  */
 var topKFrequent = function (nums, k) {
-  let len = nums.length;
+  if (nums.length <= 1) return nums;
 
-  const ans = [];
+  // 1. HASH MAP
   const hashMap = {};
 
   for (let i = 0; i < nums.length; i++) {
     const num = nums[i];
 
-    if (num in hashMap) {
-      hashMap[num] += 1;
-    } else {
-      hashMap[num] = 1;
+    hashMap[num] = hashMap[num] ? hashMap[num] + 1 : 1;
+  } // END
+
+  // 2. Bucket sort
+  const bucket = Array.from({ length: nums.length + 1 }, () =>
+    Array.from(0).fill(0)
+  );
+
+  for (const num in hashMap) {
+    const value = hashMap[num];
+
+    bucket[value].push(parseInt(num));
+  } // END
+
+  // 3. Max-Heap
+  const ans = [];
+
+  for (let i = nums.length; i >= 0; i--) {
+    for (const value of bucket[i]) {
+      if (ans.length === k) return ans;
+
+      ans.push(value);
     }
+  } // END
 
-    console.log(len);
-    len--;
-  }
-
-  console.log(ans, hashMap, len);
+  return ans;
 };
 
 const nums = [1, 2, 3, 2, 2, 3],
@@ -32,4 +47,8 @@ const nums = [1, 2, 3, 2, 2, 3],
 // const nums = [1], k = 1
 // Output: [1]
 
-topKFrequent(nums, k);
+// const nums = [-1, -1];
+// const k = 1;
+// Output: [-1]
+
+console.log(topKFrequent(nums, k));
