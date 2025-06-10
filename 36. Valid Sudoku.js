@@ -5,41 +5,36 @@
 var isValidSudoku = function (board) {
   const size = 9;
 
-  let rows = new Set();
-  let cols = new Set();
-  let boxes = new Set();
+  let rows = {};
+  let cols = {};
+  let boxes = {};
 
-  // Validate Rows
-  for (let i = 0; i < size; i++) {
-    for (let j = 0; j < size; j++) {
-      if (board[i][j] === ".") continue;
+  for (let r = 0; r < size; r++) {
+    for (let c = 0; c < size; c++) {
+      const cell = board[r][c];
+      const box = `${Math.floor(r / 3) + "," + Math.floor(c / 3)}`;
 
-      if (rows.has(board[i][j])) return false;
+      if (cell === ".") continue;
 
-      // Rows
-      rows.add(board[i][j]);
+      if (
+        (rows[r] && rows[r].has(cell)) ||
+        (cols[c] && cols[c].has(cell)) ||
+        (boxes[box] && boxes[box].has(cell))
+      ) {
+        return false;
+      }
+
+      if (!rows[r]) rows[r] = new Set();
+      if (!cols[c]) cols[c] = new Set();
+      if (!boxes[box]) boxes[box] = new Set();
+
+      rows[r].add(cell);
+      cols[c].add(cell);
+      boxes[box].add(cell);
     }
-
-    rows = new Set();
   }
 
-  // Validate Cols
-  for (let i = 0; i < size; i++) {
-    for (let j = 0; j < size; j++) {
-      if (board[j][i] === ".") continue;
-
-      if (cols.has(board[j][i])) return false;
-
-      // Cols
-      cols.add(board[j][i]);
-    }
-
-    cols = new Set();
-  }
-
-  // Validate Boxes
-  for (let i = 0; i < size; i++) {}
-
+  console.log(boxes);
   return true;
 };
 
