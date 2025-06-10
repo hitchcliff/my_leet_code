@@ -38,6 +38,7 @@ var isValidSudoku = function (board) {
   }
 
   // Validate Boxes
+  for (let i = 0; i < size; i++) {}
 
   return true;
 };
