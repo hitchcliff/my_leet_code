@@ -15,11 +15,6 @@ var twoSum = function (nums, target) {
 
 // const nums = [2, 11, 7, 15];
 // const target = 9;
-// const nums = [3, 3];
-const nums = [2, 5, 5, 11];
-const target = 10;
-
-console.log(twoSum(nums, target));
 
 // function twoSums(nums, target) {
 //   for (let i = 0; i < nums.length; i++) {
@@ -34,3 +29,5 @@ console.log(twoSum(nums, target));
 //     }
 //   }
 // }
+
+export default twoSum;
