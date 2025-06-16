@@ -1,20 +1,26 @@
 const main = (() => {
   const arr = [1, 2, 3, 4, 5, 6, 7, 8];
-  const target = 4; // 3 index
+  const target = 1;
 
-  const ans = search(arr, target, 0);
+  const ans = search(arr, target, 0, arr.length - 1);
   console.log(ans);
 
-  function search(arr, target, cursor) {
-    if (!arr[target]) {
+  function search(arr, target, s, e) {
+    if (s > e) {
       return -1;
     }
 
-    if (arr[cursor] === target) {
-      return cursor;
+    const m = s + Math.floor((e - s) / 2);
+
+    if (arr[m] === target) {
+      return m;
     }
 
-    return search(arr, target, cursor + 1);
+    if (arr[m] > target) {
+      return search(arr, target, s, m - 1);
+    }
+
+    return search(arr, target, m + 1, e);
   }
 
   //   const ans = fibo(4);
